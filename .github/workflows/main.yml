@@ -25,7 +25,6 @@ jobs:
             echo "Changes found, proceeding with commit."
           fi
       - name: Commit changes and Push repo
-        if: success() && steps.[previous-step-id].outputs != ''
         run: |
           git config user.name "@DouglasAmarelo__github-actions"
           git config user.email "DouglasAmarelo__github-actions@github.com"
