@@ -16,10 +16,19 @@ jobs:
           pip install pyyaml
       - name: Run Feed Generador
         run: python feed.py
-      - name: Push Repo
+      - name: Check for file changes
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          if git diff --quiet; then
+            echo "No changes to commit."
+            exit 0
+          else
+            echo "Changes found, proceeding with commit."
+          fi
+      - name: Commit changes and Push repo
+        if: success() && steps.[previous-step-id].outputs != ''
+        run: |
+          git config user.name "@DouglasAmarelo__github-actions"
+          git config user.email "DouglasAmarelo__github-actions@github.com"
           git add .
-          git commit -m "Modified Feed"
+          git commit -m "Modified Feed - Automated commit from GitHub Actions"
           git push
