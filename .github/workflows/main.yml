@@ -8,7 +8,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run Feed Generator (another repo)
-        uses: DouglasAmarelo/podcast-generator@main
+        uses: DouglasAmarelo/generate-podcast@main
 
       # - name: Setup Python
       #   uses: actions/setup-python@v4
